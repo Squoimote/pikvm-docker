@@ -15,6 +15,9 @@ echo -e "\n[pikvm]" >> /etc/pacman.conf
 echo "Server = $PIKVM_REPO_URL/$BOARD-$ARCH" >> /etc/pacman.conf
 echo "SigLevel = Required DatabaseOptional" >> /etc/pacman.conf
 
+pacman-key --init
+pacman-key --populate archlinuxarm
+
 # Install Packages
 pacman --noconfirm --ask=4 -Syu \
 	kvmd-platform-$PLATFORM-$BOARD \
