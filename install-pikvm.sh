@@ -13,10 +13,7 @@ pacman-key --keyserver hkps://keyserver.ubuntu.com:443 -r $PIKVM_REPO_KEY \
 pacman-key --lsign-key $PIKVM_REPO_KEY
 echo -e "\n[pikvm]" >> /etc/pacman.conf
 echo "Server = $PIKVM_REPO_URL/$BOARD-$ARCH" >> /etc/pacman.conf
-echo "SigLevel = Required DatabaseOptional" >> /etc/pacman.conf
-
-pacman-key --init
-pacman-key --populate archlinuxarm
+echo "SigLevel = Optional DatabaseOptional TrustAll" >> /etc/pacman.conf
 
 # Install Packages
 pacman --noconfirm --ask=4 -Syu \
