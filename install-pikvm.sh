@@ -16,7 +16,7 @@ echo "Server = $PIKVM_REPO_URL/$BOARD-$ARCH" >> /etc/pacman.conf
 echo "SigLevel = Optional DatabaseOptional TrustAll" >> /etc/pacman.conf
 
 # Install Packages
-pacman --noconfirm --ask=4 -Syu \
+pacman --noconfirm --ask=4 -Syucc \
 	kvmd-platform-$PLATFORM-$BOARD \
 	kvmd-webterm \
 	kvmd-oled \
@@ -27,7 +27,8 @@ pacman --noconfirm --ask=4 -Syu \
 	netctl \
 	parted \
 	e2fsprogs \
-	dos2unix
+	dos2unix \
+	man
 
 # Enable Services
 systemctl enable kvmd \
