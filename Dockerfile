@@ -3,11 +3,12 @@ FROM agners/archlinuxarm-arm32v7:latest
 ENV container=docker  
  
 ENV PIKVM_REPO_KEY=912C773ABBD1B584
-ENV PIKVM_REPO_URL=https://pikvm.org/repos
+ENV PIKVM_REPO_URL=https://files.pikvm.org/repos/arch
 ENV BOARD=rpi4
 ENV ARCH=arm
 ENV WEBUI_ADMIN_PASSWD=admin
 ENV IPMI_ADMIN_PASSWD=admin
+# ENV PLATFORM=v2-hdmiusb
 ENV PLATFORM=v4plus-hdmi
 
 COPY install-pikvm.sh /root/install-pikvm.sh
