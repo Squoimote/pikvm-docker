@@ -1,4 +1,4 @@
-FROM agners/archlinuxarm:latest
+FROM --platform=linux/arm/v7 menci/archlinuxarm:base
 ENV container=docker  
  
 ENV PIKVM_REPO_KEY=912C773ABBD1B584

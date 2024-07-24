@@ -6,6 +6,9 @@ echo PIKVM_REPO_KEY=$PIKVM_REPO_KEY
 
 mkdir -p /etc/gnupg
 echo standard-resolver >> /etc/gnupg/dirmngr.conf
+pacman-key --init
+pacman-key --populate
+pacman --noconfirm --ask=4 -Syu archlinux-keyring
 pacman-key --keyserver hkps://keyserver.ubuntu.com:443 -r $PIKVM_REPO_KEY \
 	|| pacman-key --keyserver hkps://keys.gnupg.net:443 -r $PIKVM_REPO_KEY \
 	|| pacman-key --keyserver hkps://pgp.mit.edu:443 -r $PIKVM_REPO_KEY \
