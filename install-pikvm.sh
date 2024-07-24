@@ -31,19 +31,19 @@ echo "SigLevel = Optional DatabaseOptional TrustAll" >> /etc/pacman.conf
 
 
 # Install Packages
-pacman --noconfirm --ask=4 -Syu \
+pacman --noconfirm -Syu vim grep man
+pacman --noconfirm --ask=4 -Sy \
 	kvmd-platform-$PLATFORM-$BOARD \
-	kvmd-webterm \
-	kvmd-oled \
-	kvmd-fan \
-	wiringpi \
-	pastebinit \
-	tmate \
-	netctl \
-	parted \
-	e2fsprogs \
-	dos2unix \
-	man
+	kvmd-webterm\
+	kvmd-oled\
+	kvmd-fan\
+	wiringpi\
+	pastebinit\
+	tmate\
+	netctl\
+	parted\
+	e2fsprogs\
+	dos2unix
 pacman --noconfirm -Scc
 
 # Enable Services
