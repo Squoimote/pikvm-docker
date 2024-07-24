@@ -11,6 +11,7 @@ rm -rf /etc/pacman.d/gnupg
 pacman-key --init
 echo "allow-weak-key-signatures" >> /etc/pacman.d/gnupg/gpg.conf
 pacman-key --populate archlinuxarm
+pacman --noconfirm -Sy archlinuxarm-keyring
 
 # Setup Repo 
 
