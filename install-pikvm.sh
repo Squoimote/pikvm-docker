@@ -8,9 +8,9 @@
 # https://man.archlinux.org/man/gpg.1.en#allow-weak-key-signatures
 # https://man.archlinux.org/man/pacman-key.8
 rm -rf /etc/pacman.d/gnupg
-pacman-key --noconfirm --init
+pacman-key --init
 echo "allow-weak-key-signatures" >> /etc/pacman.d/gnupg/gpg.conf
-pacman-key --noconfirm --populate archlinuxarm
+pacman-key --populate archlinuxarm
 
 # Setup Repo 
 
