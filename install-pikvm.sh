@@ -1,11 +1,20 @@
 #!/bin/bash
 
+## Workaround marginal trust error on gpg when using pacman (since Feb 2024)
+## archlinuxarm gpg keys are SHA1 and it is now deprecated by gpg.
+## See: https://archlinuxarm.org/forum/viewtopic.php?t=16762
+# Other sources
+# https://wiki.archlinux.org/title/Pacman/Package_signing#Resetting_all_the_keys
+# https://man.archlinux.org/man/gpg.1.en#allow-weak-key-signatures
+# https://man.archlinux.org/man/pacman-key.8
+rm -rf /etc/pacman.d/gnupg
+pacman-key --noconfirm --init
+echo "allow-weak-key-signatures" >> /etc/pacman.d/gnupg/gpg.conf
+pacman-key --noconfirm --populate archlinuxarm
+
 # Setup Repo 
 
 echo PIKVM_REPO_KEY=$PIKVM_REPO_KEY
-
-pacman-key --init && pacman-key --populate archlinuxarm
-pacman --noconfirm -Sy archlinux-keyring
 
 mkdir -p /etc/gnupg
 echo standard-resolver >> /etc/gnupg/dirmngr.conf
@@ -34,7 +43,7 @@ pacman --noconfirm --ask=4 -Syu \
 	e2fsprogs \
 	dos2unix \
 	man
-pacman --noconfirm --ask=4 -Scc
+pacman --noconfirm -Scc
 
 # Enable Services
 systemctl enable kvmd \
