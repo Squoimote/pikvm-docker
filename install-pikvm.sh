@@ -56,7 +56,7 @@ systemctl enable kvmd \
 		systemctl enable kvmd-otg \
 		&& echo "/dev/mmcblk0p3 /var/lib/kvmd/msd  ext4  nodev,nosuid,noexec,ro,errors=remount-ro,data=journal,X-kvmd.otgmsd-root=/var/lib/kvmd/msd,X-kvmd.otgmsd-user=kvmd  0 0" >> /etc/fstab \
 	)) \
-	&& ([[ $BOARD == rpi4 && $PLATFORM =~ ^v[23]-hdmi$ ]] && systemctl enable kvmd-janus || true)
+	&& ([[ $BOARD == rpi4 && $PLATFORM =~ ^v[234](mini|plus)?-hdmi$ ]] && systemctl enable kvmd-janus || true)
 
 sed -i -e "s/-session   optional   pam_systemd.so/#-session   optional   pam_systemd.so/g" /etc/pam.d/system-login
 
