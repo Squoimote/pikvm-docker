@@ -12,9 +12,7 @@ ENV PLATFORM=v4plus-hdmi
 
 COPY install-pikvm.sh /root/install-pikvm.sh
 
-RUN /root/install-pikvm.sh \
-&& pacman -Sy --noconfirm vim grep \
-&& pacman -Sy --noconfirm systemd
+RUN /root/install-pikvm.sh
 
 ENTRYPOINT ["/lib/systemd/systemd"]
 
