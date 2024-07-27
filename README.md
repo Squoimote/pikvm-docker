@@ -1,3 +1,25 @@
+# Actual errors
+Error on unit kvmd-tc358743.service
+```text
+v4l2-ctl[x]: Cannot open device /dev/kvmd-video, exiting.
+```
+
+Eoor on unit kvmd-otg.service
+```text
+kvmd-otg[x]: Traceback (most recent call last):
+kvmd-otg[x]:   File "/usr/bin/kvmd-otg", line 8, in <module>
+kvmd-otg[x]:     sys.exit(main())
+kvmd-otg[x]:              ^^^^^^
+kvmd-otg[x]:   File "/usr/lib/python3.12/site-packages/kvmd/apps/otg/__init__.py", line 348, in main
+kvmd-otg[x]:     options.cmd(config)
+kvmd-otg[x]:   File "/usr/lib/python3.12/site-packages/kvmd/apps/otg/__init__.py", line 207, in _cmd_start
+kvmd-otg[x]:     udc = usb.find_udc(config.otg.udc)
+kvmd-otg[x]:           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+kvmd-otg[x]:   File "/usr/lib/python3.12/site-packages/kvmd/usb.py", line 34, in find_udc
+kvmd-otg[x]:     raise RuntimeError("Can't find any UDC")
+kvmd-otg[x]: RuntimeError: Can't find any UDC
+```
+
 # Build
 Build on Raspberry Pi. It is ARMv7 architecture, so it can be built on aarch64 (ARMv8).
 ```bash

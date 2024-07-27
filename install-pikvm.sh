@@ -31,7 +31,7 @@ echo "Server = $PIKVM_REPO_URL/$BOARD-$ARCH" >> /etc/pacman.conf
 echo "SigLevel = Optional DatabaseOptional TrustAll" >> /etc/pacman.conf
 
 # Upgrade and install Packages
-pacman --noconfirm -Syu vim man
+pacman --noconfirm -Syu vim man bash-completion
 pacman --noconfirm --ask=4 -S pikvm-os-raspberrypi \
 && (mv /boot/config.txt.pacsave /boot/config.txt || true) \
 && (mv /boot/cmdline.txt.pacsave /boot/cmdline.txt || true)
