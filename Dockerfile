@@ -3,11 +3,16 @@ ENV container=docker
  
 ENV PIKVM_REPO_KEY=912C773ABBD1B584
 ENV PIKVM_REPO_URL=https://files.pikvm.org/repos/arch
+# ENV BOARD=rpi2
+# ENV BOARD=rpi3
 ENV BOARD=rpi4
 ENV ARCH=arm
-ENV WEBUI_ADMIN_PASSWD=admin
-ENV IPMI_ADMIN_PASSWD=admin
+ENV WEBUI_ADMIN_PASSWD="pikvm-docker"
+ENV IPMI_ADMIN_PASSWD="pikvm-docker"
 # ENV PLATFORM=v2-hdmiusb
+# ENV PLATFORM=v3-hdmiusb
+# ENV PLATFORM=v4-hdmi
+# ENV PLATFORM=v4mini-hdmi
 ENV PLATFORM=v4plus-hdmi
 
 COPY install-pikvm.sh /root/install-pikvm.sh
