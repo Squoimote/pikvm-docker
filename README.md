@@ -22,6 +22,35 @@ kvmd-otg[x]: RuntimeError: Can't find any UDC
 ```
 Still searching a fix.
 
+Other error on https nginx server, 502
+```text
+nginx[1278]: 2024/07/27 21:47:55 [crit] 1278#1278: *7 connect() to unix:/run/kvmd/kvmd.sock failed (2: No such file or directory) while connecting to upstream, client: 192.168.1.50, server: , request: "GET / HTTP/2.0", subrequest: "/auth_check", upstream: "http://unix:/run/kvmd/kvmd.sock:/auth/check", host: "192.168.1.52"
+```
+Still searching a fix. Failed because kvmd.service do not start. Seems to be same error as otg, "RuntimeError: Can't find any UDC".  
+https://github.com/pikvm/pikvm/issues/552  
+Try to update the raspberry pi eeprom. Please adapt the solution to your pi, do:
+```bash
+pacman -Sy rpi4-eeprom
+rpi-eeprom-update
+```
+For CM4 (v4mini and v4plus) do this and reboot before running `rpi-eeprom-update`:
+```bash
+pacman -Sy rpi4-eeprom
+cat >> /etc/default/rpi-eeprom-update << 'EOT'
+
+RPI_EEPROM_USE_FLASHROM=1
+CM4_ENABLE_RPI_EEPROM_UPDATE=1
+EOT
+cat >> /boot/config.txt << 'EOT'
+
+[cm4]
+dtparam=spi=on
+dtoverlay=audremap
+dtoverlay=spi-gpio40-45
+EOT
+```
+After this reboot a last time.
+
 # Build
 Build on Raspberry Pi. It is ARMv7 architecture, so it can be built on aarch64 (ARMv8).
 ```bash
