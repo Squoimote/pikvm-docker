@@ -24,15 +24,15 @@ ENTRYPOINT ["/lib/systemd/systemd"]
 CMD ["--log-level=info", "--system"]
 STOPSIGNAL SIGRTMIN+3
 
-COPY container.target /etc/systemd/system/container.target
+# COPY container.target /etc/systemd/system/container.target
  
-RUN ln -sf /etc/systemd/system/container.target /etc/systemd/system/default.target \
-&& mkdir /etc/systemd/system/container.target.wants/
+# RUN ln -sf /etc/systemd/system/container.target /etc/systemd/system/default.target \
+# && mkdir /etc/systemd/system/container.target.wants/
 
-COPY *.service /etc/systemd/system/
+# COPY *.service /etc/systemd/system/
 
-RUN ln -sf /etc/systemd/system/kvmd-nginx.service /etc/systemd/system/container.target.wants/kvmd-nginx.service \
-&& ln -sf /etc/systemd/system/kvmd-otg.service /etc/systemd/system/container.target.wants/kvmd-otg.service \
-&&  ln -sf /etc/systemd/system/kvmd.service /etc/systemd/system/container.target.wants/kvmd.service \
-&& ln -sf /etc/systemd/system/kvmd-webterm.service /etc/systemd/system/container.target.wants/kvmd-webterm.service \
-&& find /lib/systemd/system/ -name '*.target' ! -name 'sysinit.target' -type f -exec rm -f {} + \
+# RUN ln -sf /etc/systemd/system/kvmd-nginx.service /etc/systemd/system/container.target.wants/kvmd-nginx.service \
+# && ln -sf /etc/systemd/system/kvmd-otg.service /etc/systemd/system/container.target.wants/kvmd-otg.service \
+# &&  ln -sf /etc/systemd/system/kvmd.service /etc/systemd/system/container.target.wants/kvmd.service \
+# && ln -sf /etc/systemd/system/kvmd-webterm.service /etc/systemd/system/container.target.wants/kvmd-webterm.service \
+# && find /lib/systemd/system/ -name '*.target' ! -name 'sysinit.target' -type f -exec rm -f {} + \
